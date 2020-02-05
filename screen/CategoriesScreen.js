@@ -4,14 +4,13 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Platform
+  
 } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 //
 import { CATEGORIES } from "../data/dummy-data";
 
-//
-import Colors from "../constants/Color";
+
 //
 const CategoriesScreen = props => {
   // return a view
@@ -45,14 +44,7 @@ const CategoriesScreen = props => {
   );
 };
 
-// custom header nav
-CategoriesScreen.navigationOptions = {
-  headerTitle: "Meal Categories",
-  headerStyle: {
-    backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "white"
-  },
-  headerTintColor: Platform.OS === "android" ? "white" : "black"
-};
+
 
 // style /css
 const styles = StyleSheet.create({

@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-
 // font
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
+// navigate
+import { useScreens } from "react-native-screens";
 // navigator
 import MealsNavigator from "./navigation/MealsNavigator";
+
+useScreens();
+
 // load fontFamily to assets folder
 const fetchFonts = () => {
   Font.loadAsync({
@@ -27,9 +31,5 @@ export default function App() {
     );
   }
   //
-  return (
-    <MealsNavigator />
-  );
+  return <MealsNavigator />;
 }
-
-
