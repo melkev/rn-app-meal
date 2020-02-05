@@ -1,27 +1,55 @@
 import React from "react";
-import { StyleSheet, View, Text, Button } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  Platform
+} from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 //
 import { CATEGORIES } from "../data/dummy-data";
-// return a view
 
-const renderGridItem = (itemData) => {
-  return <View style={styles.gridItem}>
-      <Text> {itemData.item.title} </Text>
-    </View>
-  
-};
+//
+import Colors from "../constants/Color";
 //
 const CategoriesScreen = props => {
+  // return a view
+  const renderGridItem = itemData => {
+    return (
+      <TouchableOpacity
+        style={styles.gridItem}
+        onPress={() => {
+          props.navigation.navigate({ routeName: "CategoryMeals" });
+        }}
+      >
+        <View>
+          <Text> {itemData.item.title} </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+  //
   return (
     <FlatList
-      keyExtractor={(item, index)=> item.id}
+      keyExtractor={(item, index) => item.id}
       data={CATEGORIES}
       renderItem={renderGridItem}
       numColumns={2}
     />
   );
 };
+
+// custom header nav
+CategoriesScreen.navigationOptions = {
+  headerTitle: "Meal Categories",
+  headerStyle: {
+    backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "white"
+  },
+  headerTintColor: Platform.OS === "android" ? "white" : 'black'
+};
+
+// style /css
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
