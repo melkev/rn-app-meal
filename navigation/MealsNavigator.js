@@ -1,13 +1,16 @@
 import { Platform} from 'react-native'
-
-import { createAppContainer } from "react-navigation";
+//
+import { createAppContainer  } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-// cscreen
+import {createBottomTabNavigator } from 'react-navigation-tabs'
+// screen
 import CategoriesScreen from "../screen/CategoriesScreen";
 import CategoriesMealsScreen from "../screen/CategoryMealsScreen";
 import MealDetailScreen from "../screen/MealDetailScreen";
+import FavoritesScreen from '../screen/FavoritesScreen'
 //colors
 import Colors from '../constants/Color'
+//
 const MealsNavigator = createStackNavigator({
   // home page
   Categories: {
@@ -33,5 +36,11 @@ const MealsNavigator = createStackNavigator({
     headerTintColor: Platform.OS === "android" ? "white" : "black"
   }
 });
+// nav to bottom
+const MealsFavNavigator = createBottomTabNavigator({
+  Meals: MealsNavigator,
+  Favorites: FavoritesScreen
+});
 
-export default createAppContainer(MealsNavigator);
+
+export default createAppContainer(MealsFavNavigator);

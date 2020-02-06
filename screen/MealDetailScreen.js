@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Button } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { MEALS } from "../data/dummy-data";
 import CustomHeaderButton from "../components/HeaderButton";
+//
 const MealDetailScreen = props => {
   const mealId = props.navigation.getParam("mealId");
 
@@ -32,20 +33,10 @@ MealDetailScreen.navigationOptions = navigationData => {
           title="Favorite"
           iconName="ios-star"
           onPress={() => {
-            console.log("====================================");
-            console.log("Mar as favorite");
-            console.log("====================================");
+            
           }}
         />
-        <Item
-          title="Favorited"
-          iconName="ios-star-outline"
-          onPress={() => {
-            console.log("====================================");
-            console.log("Mar as favorite");
-            console.log("====================================");
-          }}
-        />
+        
       </HeaderButtons>
     )
   };
