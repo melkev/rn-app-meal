@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     elevation: 2
   },
   title: {
-    fontFamily: "open-sans-bold",
+    
     fontSize: 22,
     textAlign: "right"
   }

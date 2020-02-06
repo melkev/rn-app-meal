@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+
 // font
-import * as Font from "expo-font";
 import { AppLoading } from "expo";
+import * as Font from "expo-font";
 // navigate
-import { useScreens } from "react-native-screens";
+import { useScreens, enableScreens } from "react-native-screens";
 // navigator
 import MealsNavigator from "./navigation/MealsNavigator";
 
-useScreens();
+enableScreens();
 
 // load fontFamily to assets folder
 const fetchFonts = () => {
