@@ -4,6 +4,7 @@ import { Platform } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
+import { createDrawerNavigator } from "react-navigation-drawer";
 //icon
 import { Ionicons } from "@expo/vector-icons";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
@@ -12,10 +13,10 @@ import CategoriesScreen from "../screen/CategoriesScreen";
 import CategoriesMealsScreen from "../screen/CategoryMealsScreen";
 import MealDetailScreen from "../screen/MealDetailScreen";
 import FavoritesScreen from "../screen/FavoritesScreen";
+import FiltersScreen from "../screen/FiltersScreen";
 //colors
 import Colors from "../constants/Color";
 // header nav
-
 
 // default styles
 const defaultStackNavOptions = {
@@ -91,19 +92,28 @@ const tabScreenConfig = {
 };
 
 // nav to bottom
-const MealsFavNavigator =
+const MealsFavTabNavigator =
   Platform.OS === "android"
     ? createMaterialBottomTabNavigator(tabScreenConfig, {
-      activeColor: "white",
-      shifting: true,
-      barStyle: {
-        backgroundColor: Colors.primaryColor
-      }
-    })
+        activeColor: "white",
+        shifting: true,
+        barStyle: {
+          backgroundColor: Colors.primaryColor
+        }
+      })
     : createBottomTabNavigator(tabScreenConfig, {
-      tabBarOptions: {
-        activeTintColor: Colors.accentColor
-      }
-    });
+        tabBarOptions: {
+          activeTintColor: Colors.accentColor
+        }
+      });
 
-export default createAppContainer(MealsFavNavigator);
+const FiltersNavigator = createStackNavigator({
+  Filters: FiltersScreen
+});
+
+const MainNavigator = createDrawerNavigator({
+  MealsFavs: MealsFavTabNavigator,
+  Filters: FiltersNavigator
+});
+
+export default createAppContainer(MainNavigator);
