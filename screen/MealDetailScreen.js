@@ -1,12 +1,12 @@
 import React from "react";
 import { StyleSheet, View, Text, Button } from "react-native";
-
-import { MEALS } from '../data/dummy-data'
-
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { MEALS } from "../data/dummy-data";
+import CustomHeaderButton from "../components/HeaderButton";
 const MealDetailScreen = props => {
-  const mealId = props.navigation.getParam('mealId')
+  const mealId = props.navigation.getParam("mealId");
 
-  const selectedMeal = MEALS.find(meal => meal.id === mealId)
+  const selectedMeal = MEALS.find(meal => meal.id === mealId);
 
   return (
     <View style={styles.screen}>
@@ -20,14 +20,36 @@ const MealDetailScreen = props => {
     </View>
   );
 };
-
+// custom header Nav (button)
 MealDetailScreen.navigationOptions = navigationData => {
-  const mealId = navigationData.navigation.getParam('mealId')
-  const selectedMeal = MEALS.find(meal => meal.id === mealId)
+  const mealId = navigationData.navigation.getParam("mealId");
+  const selectedMeal = MEALS.find(meal => meal.id === mealId);
   return {
-    headerTitle: selectedMeal.title
-  }
-}
+    headerTitle: selectedMeal.title,
+    headerRight: () => (
+      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+        <Item
+          title="Favorite"
+          iconName="ios-star"
+          onPress={() => {
+            console.log("====================================");
+            console.log("Mar as favorite");
+            console.log("====================================");
+          }}
+        />
+        <Item
+          title="Favorited"
+          iconName="ios-star-outline"
+          onPress={() => {
+            console.log("====================================");
+            console.log("Mar as favorite");
+            console.log("====================================");
+          }}
+        />
+      </HeaderButtons>
+    )
+  };
+};
 
 const styles = StyleSheet.create({
   screen: {
