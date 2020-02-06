@@ -14,7 +14,7 @@ const FiltersScreen = props => {
 
 FiltersScreen.navigationOptions = navData => {
   return {
-    headerTitle: "filter Meals",
+    headerTitle: "Filters Meals",
     headerLeft: () => (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item title="menu" iconName="ios-menu" onPress={() => {
