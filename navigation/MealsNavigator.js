@@ -15,6 +15,16 @@ import FavoritesScreen from "../screen/FavoritesScreen";
 //colors
 import Colors from "../constants/Color";
 // header nav
+
+
+// default styles
+const defaultStackNavOptions = {
+  headerStyle: {
+    backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "white"
+  },
+  headerTintColor: Platform.OS === "android" ? "white" : "black"
+};
+
 const MealsNavigator = createStackNavigator(
   {
     // home page
@@ -32,15 +42,21 @@ const MealsNavigator = createStackNavigator(
   },
   {
     //initialRouteName: 'Categories',
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor:
-          Platform.OS === "android" ? Colors.primaryColor : "white"
-      },
-      headerTintColor: Platform.OS === "android" ? "white" : "black"
-    }
+    defaultNavigationOptions: defaultStackNavOptions
   }
 );
+
+// favoriteScreen header nav
+const FavNavigator = createStackNavigator(
+  {
+    Favorites: FavoritesScreen,
+    MealDetail: MealDetailScreen
+  },
+  {
+    defaultNavigationOptions: defaultStackNavOptions
+  }
+);
+
 // config
 const tabScreenConfig = {
   Meals: {
@@ -62,7 +78,7 @@ const tabScreenConfig = {
   },
   Favorites: {
     // favoriteScreen
-    screen: FavoritesScreen,
+    screen: FavNavigator,
     navigationOptions: {
       tabBarIcon: tabInfo => {
         return (
@@ -78,17 +94,16 @@ const tabScreenConfig = {
 const MealsFavNavigator =
   Platform.OS === "android"
     ? createMaterialBottomTabNavigator(tabScreenConfig, {
-      activeColor: 'white',
+      activeColor: "white",
       shifting: true,
       barStyle: {
         backgroundColor: Colors.primaryColor
       }
     })
     : createBottomTabNavigator(tabScreenConfig, {
-          tabBarOptions: {
-            activeTintColor: Colors.accentColor
-          }
-        }
-      );
+      tabBarOptions: {
+        activeTintColor: Colors.accentColor
+      }
+    });
 
 export default createAppContainer(MealsFavNavigator);
