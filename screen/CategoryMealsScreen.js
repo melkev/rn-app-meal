@@ -1,22 +1,23 @@
 import React from "react";
-
+import { useSelector } from "react-redux";
 
 //data
-import { CATEGORIES, MEALS } from "../data/dummy-data";
-
+import { CATEGORIES } from "../data/dummy-data";
 // components
 import MealList from "../components/MealList";
 
 const CategoriesMealsScreen = props => {
-  
   // recup l'id du title sur lequel on a clicker dans la page categoriesScreen est laffiche dans le text
   const catId = props.navigation.getParam("categoryId");
-  const displayMeals = MEALS.filter(
+
+  const availableMeals = useSelector(state => state.meals.filteredMeals);
+
+  const displayMeals = availableMeals.filter(
     meal => meal.categoryId.indexOf(catId) >= 0
   );
 
   //
-  return <MealList listData={displayMeals} navigation={props.navigation} />
+  return <MealList listData={displayMeals} navigation={props.navigation} />;
 };
 //
 // option navigation Dinamyc
@@ -28,6 +29,5 @@ CategoriesMealsScreen.navigationOptions = navigationData => {
     headerTitle: selectedCategory.title
   };
 };
-
 
 export default CategoriesMealsScreen;

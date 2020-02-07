@@ -5,10 +5,21 @@ import { AppLoading } from "expo";
 import * as Font from "expo-font";
 // navigate
 import { useScreens, enableScreens } from "react-native-screens";
+// redux
+import { createStore, combineReducers } from "redux";
+import { Provider } from "react-redux";
+
 // navigator
 import MealsNavigator from "./navigation/MealsNavigator";
+import mealsReducer from "./store/reducers/meals";
 
 enableScreens();
+
+const rootReducer = combineReducers({
+  meals: mealsReducer
+});
+// reduxStore
+const store = createStore(rootReducer);
 
 // load fontFamily to assets folder
 const fetchFonts = () => {
@@ -31,5 +42,9 @@ export default function App() {
     );
   }
   //
-  return <MealsNavigator />;
+  return (
+    <Provider store={store}>
+      <MealsNavigator />
+    </Provider>
+  );
 }
