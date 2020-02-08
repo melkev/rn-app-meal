@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CustomHeaderButton from "../components/HeaderButton";
 import DefaultText from "../components/DefaultText";
 import { toggleFavorite } from "../store/actions/meals";
+import Colors from "../constants/Color";
 
 const ListItem = props => {
   return (
@@ -38,7 +39,7 @@ const MealDetailScreen = props => {
   }, [currentMealIsFavorite]);
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.content}>
       <Image source={{ uri: selectedMeal.imageUrl }} style={styles.image} />
       <View style={styles.details}>
         <DefaultText> {selectedMeal.duration} Min </DefaultText>
@@ -79,7 +80,11 @@ MealDetailScreen.navigationOptions = navigationData => {
 };
 //css
 const styles = StyleSheet.create({
+  content: {
+    backgroundColor: Colors.primaryColor,
+  },
   image: {
+    marginVertical: 5,
     width: "100%",
     height: 200
   },
@@ -98,7 +103,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     borderColor: "#ccc",
     borderWidth: 1,
-    padding: 10
+    padding: 7
   }
 });
 

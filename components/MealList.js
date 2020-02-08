@@ -3,6 +3,7 @@ import { View, StyleSheet, FlatList } from "react-native";
 import { useSelector } from "react-redux";
 //components
 import MealItem from "./MealItem";
+import Colors from '../constants/Color'
 
 const MealList = props => {
   const favoriteMeals = useSelector(state => state.meals.favoriteMeals);
@@ -45,7 +46,9 @@ const styles = StyleSheet.create({
   list: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    margin: 10,
+    backgroundColor: Colors.primaryColor
   }
 });
 

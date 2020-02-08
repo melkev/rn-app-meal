@@ -8,7 +8,8 @@ import { CATEGORIES } from "../data/dummy-data";
 // componenet
 import CustomHeaderButton from "../components/HeaderButton";
 import CategoryGridTile from "../components/CategoryGridTile";
-
+// color
+import Colors from '../constants/Color'
 //
 const CategoriesScreen = props => {
   // return a view
@@ -31,6 +32,7 @@ const CategoriesScreen = props => {
   //
   return (
     <FlatList
+    contentContainerStyle={styles.list}
       keyExtractor={(item, index) => item.id}
       data={CATEGORIES}
       renderItem={renderGridItem}
@@ -54,10 +56,8 @@ CategoriesScreen.navigationOptions = navData => {
 
 // style /css
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
+  list: {
+    backgroundColor: Colors.primaryColor
   }
 });
 

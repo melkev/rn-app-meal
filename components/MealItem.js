@@ -8,6 +8,7 @@ import {
 } from "react-native";
 //component
 import DefaultText from "./DefaultText";
+import Colors from '../constants/Color'
 const MealItem = props => {
   return (
     <View style={styles.mealItem}>
@@ -40,10 +41,11 @@ const styles = StyleSheet.create({
   mealItem: {
     height: 200,
     width: "100%",
-    backgroundColor: "#f5f5f5",
-    borderRadius: 10,
+    backgroundColor: Colors.accentColor,
+    borderRadius: 5,
     overflow: "hidden",
-    marginVertical: 10
+    marginVertical: 10,
+    
   },
   bgImage: {
     width: "100%",
@@ -60,6 +62,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     justifyContent: "space-between",
     alignItems: "center",
+    
     height: "15%"
   },
   titleContainer: {

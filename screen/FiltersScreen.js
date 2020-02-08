@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { StyleSheet, View, Text, Switch, Platform } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { useDispatch } from "react-redux";
+// reduxStore
+import { setFilters } from "../store/actions/meals";
 // components
 import CustomHeaderButton from "../components/HeaderButton";
 //
@@ -11,8 +14,8 @@ const FilterSwitch = props => {
     <View style={styles.filterContainer}>
       <Text style={styles.text}> {props.label} </Text>
       <Switch
-        trackColor={{ true: Colors.primaryColor }}
-        thumbColor={Platform.OS === "android" ? Colors.primaryColor : "white"}
+        trackColor={{ true: Colors.lightCoral ,  false: Colors.columbia }}
+        thumbColor={Platform.OS === "android" ? Colors.accentColor : "white"}
         value={props.state}
         onValueChange={props.onChange}
       />
@@ -28,16 +31,17 @@ const FiltersScreen = props => {
   const [isVegan, setIsVegan] = useState(false);
   const [isVegetarian, setIsVegetarian] = useState(false);
   //
+  const dispatch = useDispatch();
+
   const saveFilters = useCallback(() => {
     const appliedFilters = {
       glutenFree: isGlutenFree,
-      lactosFree: isLactosFree,
+      lactoseFree: isLactosFree,
       vegan: isVegan,
       vegetarian: isVegetarian
     };
-    console.log("====================================");
-    console.log(appliedFilters);
-    console.log("====================================");
+    dispatch(setFilters(appliedFilters));
+    
   }, [isGlutenFree, isLactosFree, isVegan, isVegetarian]);
   //
   useEffect(() => {
@@ -46,14 +50,14 @@ const FiltersScreen = props => {
 
   return (
     <View style={styles.screen}>
-      <Text style={styles.title}>available filters / restriction</Text>
+      <Text style={styles.title}>Available filters / restriction</Text>
       <FilterSwitch
-        label="GlutenFree"
+        label="Gluten Free"
         state={isGlutenFree}
         onChange={newValue => setIsGlutenFree(newValue)}
       />
       <FilterSwitch
-        label="Lactos-free"
+        label="Lactos free"
         state={isLactosFree}
         onChange={newValue => setIsLactosFree(newValue)}
       />
@@ -63,7 +67,7 @@ const FiltersScreen = props => {
         onChange={newValue => setIsVegan(newValue)}
       />
       <FilterSwitch
-        label="vegetarian"
+        label="Vegetarian"
         state={isVegetarian}
         onChange={newValue => setIsVegetarian(newValue)}
       />
@@ -106,6 +110,7 @@ const styles = StyleSheet.create({
     fontFamily: "open-sans-bold",
     fontSize: 22,
     margin: 20,
+    letterSpacing: 1,
     textAlign: "center"
   },
   filterContainer: {
@@ -114,6 +119,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "80%",
     marginVertical: 12
+  },
+  text: {
+    fontSize: 20
   }
 });
 

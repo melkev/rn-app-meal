@@ -4,7 +4,7 @@ import { Platform, Text } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
-import { createDrawerNavigator } from "react-navigation-drawer";
+import { createDrawerNavigator, DrawerNavigatorItems } from "react-navigation-drawer";
 //icon
 import { Ionicons } from "@expo/vector-icons";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
@@ -21,7 +21,7 @@ import Colors from "../constants/Color";
 // default styles
 const defaultStackNavOptions = {
   headerStyle: {
-    backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "white"
+    backgroundColor: Platform.OS === "android" ? Colors.lightCoral : "white"
   },
   headerTitleStyle: {
     fontFamily: "open-sans-bold"
@@ -80,7 +80,7 @@ const tabScreenConfig = {
           />
         );
       },
-      tabBarColor: Colors.primaryColor,
+      tabBarColor: Colors.lightCoral,
       tabBarLabel:
         Platform.OS === "android" ? (
           <Text style={{ fontFamily: "open-sans-bold" }}>Meals</Text>
@@ -103,7 +103,7 @@ const tabScreenConfig = {
       Platform.OS === "android" ? (
         <Text style={{ fontFamily: "open-sans-bold" }}>Favorit</Text>
       ) : (
-        "Favorit  "
+        "Favorite  "
       )
     }
   }
@@ -141,20 +141,27 @@ const FiltersNavigator = createStackNavigator(
 // nav draw
 const MainNavigator = createDrawerNavigator(
   {
+    
     MealsFavs: {
       screen: MealsFavTabNavigator,
       navigationOptions: {
-        drawerLabel: "Meals"
+        drawerLabel: "Meals",
+        
+      
       }
     },
     Filters: FiltersNavigator
   },
   {
     contentOptions: {
-      activeTintColor: Colors.accentColor
+      activeTintColor: Colors.primaryColor,
+      labelStyle: 'open-sans'
     },
+    
+    overlayColor: 'rgba(0,0,0,0.8)',
+    drawerLockMode: 'locked-closed',
     drawerType: "back",
-    drawerBackgroundColor: Colors.primary
+    drawerBackgroundColor: Colors.lightCoral
   }
 );
 

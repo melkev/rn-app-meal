@@ -57,7 +57,8 @@ const styles = StyleSheet.create({
     shadowRadius: 10
   },
   title: {
-    fontSize: 22,
+    fontSize: 20,
+    color: '#231942' ,
     textAlign: "right"
   }
 });
